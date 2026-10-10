@@ -38,6 +38,7 @@ h2{font-size:1.6rem;margin:0 0 1rem;border-left:5px solid var(--accent);padding-
 footer{text-align:center;color:var(--muted);padding:2rem 1rem;border-top:1px solid var(--line)}
 .note{color:var(--muted);font-size:.9rem}
 </style>
+
 </head>
 <body>
 <header class="hero">
@@ -71,12 +72,13 @@ const doctors=[
  {"name": "Dr. Sherif Zahran", "course": "Entrepreneurship", "email": "s.zahran@fci-cu.edu.eg"}
 ];
 const admins=[
- {name:"Ali",role:"Admin",contact:"https://wa.me/201094025274",label:"WhatsApp · 01094025274"}
+ {name:"Ali",role:"Admin",contact:"https://wa.me/201094025274",label:"WhatsApp · 01094025274"},
+ {name:"Malak",role:"Admin",contact:"https://wa.me/201123258794",label:"WhatsApp · 01123258794"},
+ {name:"Haya",role:"Admin",contact:"https://wa.me/201019821380",label:"WhatsApp · 01019821380"},
+ {name:"Ziad",role:"Admin",contact:"https://wa.me/201109374374",label:"WhatsApp · 01109374374"},
+ {name:"Sara",role:"Admin",contact:"https://wa.me/201020392327",label:"WhatsApp · 01020392327"}
 ];
-const E=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const byCourse={};doctors.forEach(d=>(byCourse[d.course]=byCourse[d.course]||[]).push(d));
-document.getElementById('docs').innerHTML=Object.keys(byCourse).map(c=>`<h3 class="grp">${E(c)}</h3>`+byCourse[c].map(d=>`<div class="card"><h3>${E(d.name)}</h3><a class="btn" href="mailto:${E(d.email)}">${E(d.email)}</a></div>`).join('')).join('');
-document.getElementById('adm').innerHTML=admins.map(a=>`<div class="card"><h3>${E(a.name)}</h3><div class="sub">${E(a.role)}</div><a class="btn" href="${E(a.contact)}">${E(a.label)}</a></div>`).join('');
+
 const L=(day,time,course,doc,A,B,note)=>({day,time,course,doc,A,B,note});
 const IF="I. Farag Hall",AS="Al-Shafei Hall";
 const lectures=[
@@ -96,6 +98,11 @@ const other=[
  L("Monday","12:45 - 04:00","Logic Design","Dr. Eman Ahmed & Dr. Dina Tarek",AS,AS,"From the 'Second Level - Second' table"),
  L("Wednesday","08:00 - 11:00","Intro to Software Engineering","Dr. Lamia Abo Zaid","Exam. Room 409","Exam. Room 409","From the 'Second Level - Retakes' table")
 ];
+
+const E=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const byCourse={};doctors.forEach(d=>(byCourse[d.course]=byCourse[d.course]||[]).push(d));
+document.getElementById('docs').innerHTML=Object.keys(byCourse).map(c=>`<h3 class="grp">${E(c)}</h3>`+byCourse[c].map(d=>`<div class="card"><h3>${E(d.name)}</h3><a class="btn" href="mailto:${E(d.email)}">${E(d.email)}</a></div>`).join('')).join('');
+document.getElementById('adm').innerHTML=admins.map(a=>`<div class="card"><h3>${E(a.name)}</h3><div class="sub">${E(a.role)}</div><a class="btn" href="${E(a.contact)}">${E(a.label)}</a></div>`).join('');
 const groups=["Group A","Group B","Other tables"];let cur=groups[0];
 function draw(){
  document.getElementById('tabs').innerHTML=groups.map(t=>`<button class="${t===cur?'on':''}" data-t="${E(t)}">${E(t)}</button>`).join('');
@@ -109,5 +116,6 @@ function show(id){if(!secs.includes(id))id="doctors";secs.forEach(x=>{document.g
 document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const id=a.getAttribute('href').slice(1);show(id);document.querySelector('main').scrollIntoView({behavior:'smooth'})}));
 show(location.hash.slice(1));
 </script>
+
 </body>
 </html>
