@@ -97,6 +97,15 @@ background:var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
 .chead{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
 .chead .btn{margin:0;font-size:.8rem;padding:.1rem .6rem;background:none;cursor:pointer;font-family:inherit}
 
+.glist{display:flex;flex-direction:column;gap:.6rem}
+.gc{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:.7rem .8rem}
+.gc .gt{display:flex;align-items:flex-start;gap:.6rem;font-weight:600;cursor:pointer}
+.gc .gt input{width:1.15rem;height:1.15rem;margin-top:.2rem;flex:none}
+.gc .gr{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.6rem}
+.gc .gr label{display:flex;flex-direction:column;gap:.25rem;font-size:.8rem;color:var(--muted)}
+.gc .gr select{font:inherit;font-size:1rem;padding:.55rem .6rem;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text);width:100%}
+.gc .gr select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(184,134,43,.18)}
+.gempty{padding:1.2rem;text-align:center;color:var(--muted);border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .xwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .xl{width:100%;min-width:600px;border-collapse:collapse}
 .xl th,.xl td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:0;text-align:left}
@@ -160,7 +169,7 @@ background:var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
   <section id="gpa"><h2>GPA calculator</h2>
   <p class="hint">Pick your level, tick the courses you want to include, and choose the grade for each one. Your GPA shows below. You can change the credit hours. Everything is saved on your own device.</p>
   <div class="snbox"><select id="glevel" aria-label="Level"></select><input id="gq" type="search" placeholder="Search any course in the whole faculty..." autocomplete="off" aria-label="Search courses"></div>
-  <div class="xwrap"><table class="xl"><thead><tr><th><span class="sr">Include</span></th><th>Course</th><th>Credit hours</th><th>Grade</th></tr></thead><tbody id="gbody"></tbody></table></div>
+  <div id="gbody" class="glist"></div>
   <div class="snbox" style="margin-top:.8rem"><button id="gclr" type="button">Clear all</button></div>
   <div class="grid" style="margin-top:.8rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"><div class="card"><h3>Your GPA</h3><div class="qscore" id="gterm">-</div></div><div class="card"><h3>Earned hours</h3><div class="qscore" id="gearn">-</div><div class="note" id="ghrs" aria-live="polite"></div></div></div>
   <h3 class="grp">Cumulative GPA (optional)</h3>
@@ -438,13 +447,13 @@ function renderGpa(){
  $('glevel').disabled=!!q;
  const opts=g=>`<option value=""${g?'':' selected'}>-</option>`+gradeScale.map(s=>`<option value="${E(s[0])}"${s[0]===g?' selected':''}>${E(s[0])} (${s[1]})</option>`).join('');
  $('gbody').innerHTML=list.length?list.map(n=>{const s=g2.s[n]||{on:false,h:null,g:''};
-  return `<tr data-n="${E(n)}"><td style="width:2.6rem;text-align:center"><input class="gk" type="checkbox"${s.on?' checked':''} style="width:1.1rem;height:1.1rem" aria-label="Include ${E(n)}"></td><td style="padding:.3rem .6rem">${E(n)}</td><td><select class="gh" aria-label="Credit hours for ${E(n)}" style="width:100%;font:inherit;border:0;background:transparent;color:var(--text);padding:.55rem .6rem">${[0,2,3].map(x=>`<option value="${x}"${x===hrs(s)?' selected':''}>${x}</option>`).join('')}</select></td><td><select class="gg" aria-label="Grade for ${E(n)}" style="width:100%;font:inherit;border:0;background:transparent;color:var(--text);padding:.55rem .6rem">${opts(s.g)}</select></td></tr>`}).join('')
-  :'<tr><td colspan="4" style="padding:1.2rem;text-align:center;color:var(--muted)">No course matches your search.</td></tr>';
+  return `<div class="gc" data-n="${E(n)}"><label class="gt"><input class="gk" type="checkbox"${s.on?' checked':''} aria-label="Include ${E(n)}"><span>${E(n)}</span></label><div class="gr"><label>Credit hours<select class="gh" aria-label="Credit hours for ${E(n)}">${[0,2,3].map(x=>`<option value="${x}"${x===hrs(s)?' selected':''}>${x}</option>`).join('')}</select></label><label>Grade<select class="gg" aria-label="Grade for ${E(n)}">${opts(s.g)}</select></label></div></div>`}).join('')
+  :'<div class="gempty">No course matches your search.</div>';
  $('gpg').value=g2.pg;$('gph').value=g2.ph;
  calcGpa();
 }
 $('gbody').addEventListener('change',e=>{
- const tr=e.target.closest('tr[data-n]');if(!tr)return;
+ const tr=e.target.closest('.gc[data-n]');if(!tr)return;
  const s=gst(tr.dataset.n);
  if(e.target.classList.contains('gk'))s.on=e.target.checked;
  else if(e.target.classList.contains('gh'))s.h=Math.max(0,Math.min(12,parseFloat(e.target.value)||0));
@@ -453,7 +462,7 @@ $('gbody').addEventListener('change',e=>{
 });
 $('gbody').addEventListener('input',e=>{
  if(!e.target.classList.contains('gh'))return;
- const tr=e.target.closest('tr[data-n]');if(!tr)return;
+ const tr=e.target.closest('.gc[data-n]');if(!tr)return;
  gst(tr.dataset.n).h=Math.max(0,Math.min(12,parseFloat(e.target.value)||0));saveG();calcGpa();
 });
 $('glevel').addEventListener('change',e=>{g2.lv=+e.target.value;saveG();renderGpa()});
