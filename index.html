@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FCAI-CU | Class of 25/29</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#b8862b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-title" content="FCAI-CU">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
@@ -53,16 +58,83 @@ background:var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
 .empty{color:var(--muted);grid-column:1/-1;text-align:center;padding:1.5rem 0}
 .tatoggle{grid-column:1/-1;font:inherit;font-weight:600;text-align:left;background:var(--card);color:var(--accent);border:1px solid var(--accent);border-radius:12px;padding:.6rem 1rem;cursor:pointer}
 .tatoggle:hover{background:var(--accent);color:#fff}
+
+.fab{position:fixed;top:calc(env(safe-area-inset-top,0px) + .6rem);z-index:20;width:2.5rem;height:2.5rem;border-radius:50%;border:1px solid var(--accent);background:var(--card);color:var(--text);font-size:1.1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#tt{right:.7rem}#bell{right:3.6rem}
+.fab:focus-visible,.pbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.badge-n{position:absolute;top:-.35rem;right:-.35rem;min-width:1.15rem;height:1.15rem;padding:0 .3rem;border-radius:99px;background:#d6452d;color:#fff;font-size:.7rem;font-weight:700;display:none;align-items:center;justify-content:center}
+.badge-n.on{display:flex}
+.ov{position:fixed;inset:0;z-index:30;background:rgba(10,8,4,.55);display:none;justify-content:center;align-items:flex-start;padding:calc(env(safe-area-inset-top,0px) + 3.8rem) 1rem 1rem}
+.ov.on{display:flex}
+.panel{width:100%;max-width:520px;max-height:100%;overflow:auto;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:14px;padding:1rem}
+.panel h2{margin-bottom:.6rem}
+.phead{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.pbtn{font:inherit;font-weight:600;background:var(--card);color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:.2rem .8rem;cursor:pointer;font-size:.9rem}
+.panel .card{margin-bottom:.7rem}
+.panel .card.new{border-color:var(--accent);box-shadow:0 0 0 2px rgba(184,134,43,.25)}
+.ntag{display:inline-block;font-size:.75rem;font-weight:600;padding:.05rem .65rem;border-radius:99px;border:1px solid var(--accent);color:var(--accent);margin:0 .4rem .3rem 0}
+.ntag.sample{border-color:var(--muted);color:var(--muted);border-style:dashed}
+
+.bar{height:.55rem;border-radius:99px;background:var(--line);overflow:hidden;margin:.5rem 0 .3rem}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .25s}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.6rem}
+.chip{font:inherit;font-size:.85rem;min-width:2.1rem;height:2.1rem;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.chip:focus-visible,.fcard:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.fcard{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;min-height:12rem;padding:1.5rem;font:inherit;font-size:1.15rem;line-height:1.5;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:14px;cursor:pointer}
+.fcard.back{border-color:var(--accent);background:var(--bg)}
+.fcard small{display:block;color:var(--muted);font-size:.8rem;margin-top:.8rem}
+.fcctl{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:.8rem}
+.stabs{margin-bottom:1rem}
+
+.snbox{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0 1rem}
+.snbox input,.snbox select,.ta{font:inherit;padding:.6rem 1rem;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);outline:none}
+.snbox input,.snbox select{flex:1 1 11rem}
+.ta{width:100%;resize:vertical}
+.snbox input:focus,.snbox select:focus,.ta:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(184,134,43,.18)}
+.snbox button{font:inherit;font-weight:600;background:var(--accent);color:#fff;border:0;border-radius:12px;padding:.6rem 1.2rem;cursor:pointer}
+.snbox button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chead{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
+.chead .btn{margin:0;font-size:.8rem;padding:.1rem .6rem;background:none;cursor:pointer;font-family:inherit}
+
+.xwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.xl{width:100%;min-width:600px;border-collapse:collapse}
+.xl th,.xl td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:0;text-align:left}
+.xl th{padding:.5rem .6rem;font-size:.85rem;color:var(--muted);background:var(--bg)}
+.xl th:last-child,.xl td:last-child{border-right:0}
+.xl tr:last-child td{border-bottom:0}
+.xl td:first-child{padding:.3rem .6rem;color:var(--muted);width:2.2rem}
+.xl input{width:100%;font:inherit;border:0;background:transparent;color:var(--text);padding:.55rem .6rem;outline:none}
+.xl input:focus{background:var(--bg);box-shadow:inset 0 0 0 2px var(--accent)}
+.xl td.xp{padding:.4rem .6rem;min-width:9rem}
+.xl td.xp .bar{margin:.1rem 0}
+.xl .xdel{margin:.3rem;cursor:pointer;background:none;font-family:inherit}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.qopt{display:block;width:100%;text-align:left;font:inherit;padding:.7rem 1rem;margin:.5rem 0;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer}
+.qopt:hover:not(:disabled){border-color:var(--accent)}
+.qopt:disabled{cursor:default}
+.qopt.ok{border-color:#2e8b57;box-shadow:0 0 0 2px rgba(46,139,87,.25)}
+.qopt.bad{border-color:#d6452d;box-shadow:0 0 0 2px rgba(214,69,45,.25)}
+.qopt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.qexp{margin:.6rem 0;padding:.7rem 1rem;border-left:4px solid var(--accent);background:var(--card);border-radius:0 10px 10px 0;color:var(--muted)}
+.qscore{font-size:2rem;font-weight:800;color:var(--accent);text-align:center;margin:.5rem 0}
 </style>
 
 </head>
 <body>
+<button id="bell" class="fab" type="button" aria-label="Announcements">🔔<span id="bn" class="badge-n"></span></button>
+<button id="tt" class="fab" type="button"></button>
+<div id="ov" class="ov" role="dialog" aria-modal="true" aria-label="Announcements"><div class="panel">
+ <div class="phead"><h2>Announcements</h2><button id="pc" class="pbtn" type="button">Close</button></div>
+ <div id="notifbox" style="margin-bottom:.8rem"></div>
+ <div id="annlist"></div>
+</div></div>
 <header class="hero">
   <span class="badge">FCAI-CU</span>
   <h1>Faculty of Computers and Artificial Intelligence</h1>
   <p>Cairo University</p>
   <p>Class of 2025 / 2029</p>
-  <nav><a href="#doctors">Doctors</a><a href="#tas">TAs</a><a href="#courses">Lectures</a><a href="#drive">Drive</a><a href="#admins">Admins</a></nav>
+  <nav><a href="#doctors">Doctors</a><a href="#tas">TAs</a><a href="#courses">Lectures</a><a href="#study">Study</a><a href="#gpa">GPA</a><a href="#drive">Drive</a><a href="#admins">Admins</a></nav>
 </header>
 <main>
   <section id="doctors"><h2>Doctors</h2>
@@ -77,6 +149,25 @@ background:var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
   <div class="grid dir" id="talist"></div></section>
   <section id="courses"><h2>Lectures · Term 1, 2026/2027</h2><p class="note">Second Level. Sections and labs depend on your S-number (coming soon).</p><div class="tabs" id="tabs"></div><div class="grid" id="crs"></div></section>
   <section id="drive"><h2>Class Drive</h2><div class="card"><h3>Class of 25/29 Drive</h3><div class="sub">Lecture slides, notes, assignments and past exams.</div><a class="btn" href="https://drive.google.com/drive/folders/1n3KgYV0IJU8zsqvitfGdt4z3gk4gV-nd?usp=drive_link" target="_blank" rel="noopener">Open Google Drive</a></div></section>
+  <section id="study"><h2>My study space</h2>
+  <p class="hint">The tables are yours. They are saved on your own device, and nobody else can see them.</p>
+  <div id="vtrack">
+   <p class="note">Pick a course from the list or type your own. Then set how many lectures it has and how many you finished.</p>
+   <datalist id="kc"></datalist>
+   <div class="xwrap"><table class="xl"><thead><tr><th>#</th><th>Course</th><th>Lectures</th><th>Done</th><th>Progress</th><th><span class="sr">Remove</span></th></tr></thead><tbody id="xbody"></tbody></table></div>
+   <div class="snbox" style="margin-top:.8rem"><button id="xadd" type="button">Add row</button></div></div>
+  </section>
+  <section id="gpa"><h2>GPA calculator</h2>
+  <p class="hint">Pick your level, tick the courses you want to include, and choose the grade for each one. Your GPA shows below. You can change the credit hours. Everything is saved on your own device.</p>
+  <div class="snbox"><select id="glevel" aria-label="Level"></select><input id="gq" type="search" placeholder="Search any course in the whole faculty..." autocomplete="off" aria-label="Search courses"></div>
+  <div class="xwrap"><table class="xl"><thead><tr><th><span class="sr">Include</span></th><th>Course</th><th>Credit hours</th><th>Grade</th></tr></thead><tbody id="gbody"></tbody></table></div>
+  <div class="snbox" style="margin-top:.8rem"><button id="gclr" type="button">Clear all</button></div>
+  <div class="grid" style="margin-top:.8rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"><div class="card"><h3>Your GPA</h3><div class="qscore" id="gterm">-</div></div><div class="card"><h3>Earned hours</h3><div class="qscore" id="gearn">-</div><div class="note" id="ghrs" aria-live="polite"></div></div></div>
+  <h3 class="grp">Cumulative GPA (optional)</h3>
+  <p class="note">Enter your GPA and credit hours before these courses to get your new cumulative GPA.</p>
+  <div class="snbox"><input id="gpg" type="number" step="0.01" min="0" max="4" placeholder="Previous GPA" aria-label="Previous GPA"><input id="gph" type="number" min="0" max="400" placeholder="Previous registered hours" aria-label="Previous registered hours"></div>
+  <div class="card"><h3>Cumulative GPA</h3><div class="qscore" id="gcum">-</div></div>
+</section>
   <section id="admins"><h2>Admins</h2><div class="grid" id="adm"></div></section>
 </main>
 <footer>FCAI-CU · Class of 25/29 · <span class="note">Sample data, to be replaced with real info</span></footer>
@@ -148,18 +239,20 @@ const termTAs=[
  ["Eman Raslan","emanraslan@fci-cu.edu.eg","Network"],
  ["Ahmed Alaa El-din Ismael Ghazal","a.alaa@fci-cu.edu.eg","Network"],
  ["Eman Yehia Mohamed Mosad","e.yehia@fci-cu.edu.eg","Network"],
+ ["Mohamed Hamed","mnasrtaha@fci-cu.edu.eg","Network"],
  ["Mohamed Talaat Saad","mtalaat@fci-cu.edu.eg","Network"],
  ["Mohammed Mahmoud Saad El-din El-Khawlany","m.saadelden@fci-cu.edu.eg","Network"],
  ["Sara Magdy Abdelmonem","s.magdy@fci-cu.edu.eg","Network"],
  ["Toqa Tawfiq Gharib Mohamed","t.tawfiq@fci-cu.edu.eg","Network"],
+ ["Hayam Gamal Mohamed","hayam@fci-cu.edu.eg","OR & DS"],
  ["Areej Mohamed Mamdouh Zaki","areej.m.zaki@fci-cu.edu.eg","OR & DS"],
- ["Yomna Esmail Fathy","yomnafathy@fci-cu.edu.eg","OR & DS"],
+ ["Sally Saad Kassem","s.kassem@fci-cu.edu.eg","OR & DS"],
+ ["Sherif Zahran","s.zahran@fci-cu.edu.eg","Entrepreneurship"],
  ["Ahmed Ramzy Ahmed Ahmed Negm","a.ramzy@fci-cu.edu.eg","Entrepreneurship"],
  ["Nesma Mostafa Zaki","n.mostafa@fci-cu.edu.eg","Entrepreneurship"],
  ["Zeinab Adel Farid El-Ghobashy","Zeinab@fci-cu.edu.eg","Entrepreneurship"],
  ["Rana Abdelkader","r.abdelkader@fci-cu.edu.eg","Logic Design"],
- ["Ali Farouk Ali Mohamed Khalifa","a.farouk@fci-cu.edu.eg","Logic Design"],
- ["Dina Tarek Mohamed","d.tarek@fci-cu.edu.eg","Logic Design"]
+ ["Ali Farouk Ali Mohamed Khalifa","a.farouk@fci-cu.edu.eg","Logic Design"]
 ];
 const byCourse={};doctors.forEach(d=>(byCourse[d.course]=byCourse[d.course]||[]).push(d));
 const staffDocs=[["Prof.","Ibrahim Farag Abd El-Rahman","i.farag@fci-cu.edu.eg","Computer Science",""],["Assoc.Prof.","Akram Ibrahim Mohamed Salah","akram.salah@fci-cu.edu.eg","Computer Science",""],["Prof.","Salwa Elgamal","s.elgamal@fci-cu.edu.eg","Computer Science",""],["Prof.","Aly Aly Fahmy","a.fahmy@fci-cu.edu.eg","Computer Science",""],["Prof.","Hesham Ahmed Hassan Mohamed","h.hassan@fci-cu.edu.eg","Computer Science",""],["Prof.","Fatma Abd El-Sattar Omara","f.omara@fci-cu.edu.eg","Computer Science",""],["Prof.","Reem Bahgat","r.bahgat@fci-cu.edu.eg","Computer Science",""],["Prof.","Khaled Fouad Sayed Shaalan","k.shaalan@fci-cu.edu.eg","Computer Science",""],["Prof.","Amr Ahmed Badr","amr.badr@fci-cu.edu.eg","Computer Science",""],["Prof.","Samhaa Rafie Adel Elbeltagi","s.elbeltagy@fci-cu.edu.eg","Computer Science",""],["Prof.","Abeer Mohamed El-Korani Mohamed","a.korani@fci-cu.edu.eg","Computer Science","Head of Computer Science Dept."],["Assoc. Prof.","Samir Abdel Rahman","s.abdelrahman@fci-cu.edu.eg","Computer Science",""],["Assoc. Prof.","Amr Atef Kamel Hassanien","a.kamel@fci-cu.edu.eg","Computer Science",""],["Assoc. Prof.","Khaled Tawfik Hassan Wasif","kwassif@fci-cu.edu.eg","Computer Science",""],["Assoc. Prof.","Ahmed Shawky Moussa","a.moussa@fci-cu.edu.eg","Computer Science",""],["Assoc. Prof.","Sherif Essam El-Din Khattab","s.khattab@fci-cu.edu.eg","Computer Science",""],["Dr.","Mostafa Reda Abdallah El-Tantawy","m.reda@fci-cu.edu.eg","Computer Science",""],["Dr.","Mohammad El-Ramly","m.elramy@fci-cu.edu.eg","Computer Science",""],["Dr.","Ali Ahmed Ali Ahmed","a.ahmed@fci-cu.edu.eg","Computer Science",""],["Dr.","Basheer Abd El Fatah","basheer@fci-cu.edu.eg","Computer Science",""],["Dr.","Emad Nabil","e.nabil@fci-cu.edu.eg","Computer Science",""],["Dr.","Nouh Sabri Elmitwally","nouh.sabri@fci-cu.edu.eg","Computer Science",""],["Dr.","Mohamed Nassef Fattoh","m.nassef@fci-cu.edu.eg","Computer Science",""],["Dr.","Hanaa Baiomy Ali Mobarz","h.mobarz@fci-cu.edu.eg","Computer Science",""],["Dr.","Soha Hassan MahmoudMakady","s.makady@fci-cu.edu.eg","Computer Science",""],["Dr.","Cherry Ahmed","c.ahmed@fci-cu.edu.eg","Computer Science",""],["Dr.","Amin Mohamed Allam","a.allam@fci-cu.edu.eg","Computer Science",""],["Dr.","Lamia Abo Zaid","l.abozaid@fci-cu.edu.eg","Computer Science",""],["Dr.","Waleed Ahmed Fouad","w.fouad@fci-cu.edu.eg","Computer Science",""],["Dr.","Eman Hossny","e.hossny@fci-cu.edu.eg","Computer Science",""],["Dr.","Sara Maadawy Hassan","s.maadawy@fci-cu.edu.eg","Computer Science",""],["Dr.","Sabah Sayed","s.sayed@fci-cu.edu.eg","Computer Science",""],["Assoc. Prof.","Sherif Abd El-Megeed Mazen","s.mazen@fci-cu.edu.eg","Information Systems",""],["Assoc. Prof.","Ali Hamed Elbastawesy","alibasta@fci-cu.edu.eg","Information Systems",""],["Prof.","Galal Hassan Galal-Edeen","galal@fci-cu.edu.eg","Information Systems",""],["Prof.","Mohamed E. El-Sharkawi","m.elsharkawi@fci-cu.edu.eg","Information Systems",""],["Assoc. Prof.","Mohamed Nour Eldien","m.nour@fci-cu.edu.eg","Information Systems",""],["Prof.","Hoda Mokhtar Omar Mokhtar","h.mokhtar@fci-cu.edu.eg","Information Systems","Head of Information Systems Dept."],["Prof.","Ehab Ezat Sharaf El-deen","e.ezat@fci-cu.edu.eg","Information Systems",""],["Assoc. Prof.","Hatem Mohamed Abd El-Monem El-Kadi","hkadi@fci-cu.edu.eg","Information Systems",""],["Assoc. Prof.","Ahmed Mahmoud Hani Awad","a.gaafar@fci-cu.edu.eg","Information Systems",""],["Assoc. Prof.","Amal Elgammal","a.elgammal@fci-cu.edu.eg","Information Systems",""],["Assoc. Prof.","Neamat Abdelhady","n.eltazi@fci-cu.edu.eg","Information Systems",""],["Dr.","Sherien Farouk Hamed Ghoneim","s.ghoneim@fci-cu.edu.eg","Information Systems",""],["Dr.","Osama Mostafa Mohamed Ismael","osama@fci-cu.edu.eg","Information Systems",""],["Dr.","Hanan Moussa","h.moussa@fci-cu.edu.eg","Information Systems",""],["Dr.","Waleed Helmy Abd El-Hafeez","w.helmy@fci-cu.edu.eg","Information Systems",""],["Dr.","Ayman Taha Farahat","a.taha@fci-cu.edu.eg","Information Systems",""],["Dr.","Neveen Elgamal","n.elgamal@fci-cu.edu.eg","Information Systems",""],["Dr.","Ayman Ramadan Elkilany","a.ramadan@fci-cu.edu.eg","Information Systems",""],["Dr.","Abdeltawab Hendawi","a.hendawi@fci-cu.edu.eg","Information Systems",""],["Dr.","Noha Nagy Mohy Abd El-Rahman","n.nagy@fci-cu.edu.eg","Information Systems",""],["Dr.","Iman Mohamed Atef Helal","i.helal@fci-cu.edu.eg","Information Systems",""],["Dr.","Amany Hassan Badr El-Deen Easa","a.hassan@fci-cu.edu.eg","Information Systems",""],["Prof.","Fathy Aamer","f.aamer@fci-cu.edu.eg","Information Technology",""],["Prof.","Mohamed Gamal Eldien Darwish","g.darwish@fci-cu.edu.eg","Information Technology",""],["Prof.","Hoda Onsi","h.onsi@fci-cu.edu.eg","Information Technology",""],["Prof.","Iman Aly Saroit","i.saroit@fci-cu.edu.eg","Information Technology",""],["Prof.","Reda Abd Elwahab","r.abdelwahab@fci-cu.edu.eg","Information Technology","Dean"],["Prof.","Mahmoud A. Essmael shoman","m.essmael@fci-cu.edu.eg","Information Technology","Vice Dean of Research & Higher Studies"],["Prof.","Aboul Ella Hassanien","aboitcairo@fci-cu.edu.eg","Information Technology",""],["Prof.","Khaled Mostafa","khaledms@fci-cu.edu.eg","Information Technology",""],["Prof.","Hesham Elmahdy","ehesham@fci-cu.edu.eg","Information Technology",""],["Prof.","Neamat Elgayar","n.elgayar@fci-cu.edu.eg","Information Technology",""],["Prof.","Sherif Mahdy Abdou","s.abdou@fci-cu.edu.eg","Information Technology","Head of Information Technology Dept."],["Prof.","Haitham Hamza","hhamza@fci-cu.edu.eg","Information Technology",""],["Prof.","Nivin Abo El-Hadid Ghamry","nivin@fci-cu.edu.eg","Information Technology",""],["Assoc. Prof.","Mohamed Mahmoud Abd Eldayem","mdayem@fci-cu.edu.eg","Information Technology",""],["Assoc. Prof.","Iman Atef Mohamed Elazab","i.elazab@fci-cu.edu.eg","Information Technology",""],["Assoc. Prof.","Amira Mohamed Kotb Nasr","a.kotb@fci-cu.edu.eg","Information Technology",""],["Assoc. Prof.","Moataz Elsaban","m.elsaban@fci-cu.edu.eg","Information Technology",""],["Assoc. Prof.","Eid Mohamed Emary","e.emary@fci-cu.edu.eg","Information Technology",""],["Assoc. Prof.","Sanaa Mohamed Ahmed Taha","staha@fci-cu.edu.eg","Information Technology",""],["Dr.","Mohamed Ahmed Ahmed Refaey","m.refaey@fci-cu.edu.eg","Information Technology",""],["Dr.","Eman El-Sayed Sanad","i.metwaly@fci-cu.edu.eg","Information Technology",""],["Dr.","Mohamed Ahmed Wahby","m.wahby@fci-cu.edu.eg","Information Technology",""],["Dr.","Shimaa Mosaad","s.mosaad@fci-cu.edu.eg","Information Technology",""],["Dr.","Mona Solyman","mona.solyman@fci-cu.edu.eg","Information Technology",""],["Dr.","Nour El-deen Mahmoud Khalifa","nourmahmoud@fci-cu.edu.eg","Information Technology",""],["Dr.","Mohamed Hamed Nasreldin Taha","mnasrtaha@fci-cu.edu.eg","Information Technology",""],["Dr.","Waleed Mohiy El-Din Adly","w.mohiy@fci-cu.edu.eg","Information Technology",""],["Dr.","Eman Moustafa Fahmi","e.moustafa@fci-cu.edu.eg","Information Technology",""],["Prof.","Motaz Mohammed Hosny Korshid","motaz.khorshid@fci-cu.edu.eg","Decision Support",""],["Prof.","Said Aly Hassan","said@fci-cu.edu.eg","Decision Support",""],["Prof.","Assem Abd Elfatah","a.tharwat@fci-cu.edu.eg","Decision Support",""],["Prof.","Mohamed Mostafa Saleh","m.saleh@fci-cu.edu.eg","Decision Support","Vice Dean for Community Development & Environmental Development"],["Prof.","Hesham M. Abdelsalam","h.abdelsalam@fci-cu.edu.eg","Decision Support",""],["Prof.","Ehab Fahmy Elkhodary","e.elkhodary@fci-cu.edu.eg","Decision Support","Vice Dean for Educational & Student Affairs / Head of Decision Support Dept."],["Prof.","Tarek Hanafy Mohamed Aboulenien","t.hanafy@fci-cu.edu.eg","Decision Support",""],["Assoc.Prof.","Mohamed Bayoumi Aly Hassan","dr_bayoumi10@fci-cu.edu.eg","Decision Support",""],["Dr.","Amr Ibrahim Mohamed M. Ali","o.ibrahim@fci-cu.edu.eg","Decision Support",""],["Dr.","Sally Saad Kassem","s.kassem@fci-cu.edu.eg","Decision Support",""],["Dr.","Olivia Mohamed","olivia_morad@fci-cu.edu.eg","Decision Support",""],["Dr.","Ehab Zaky Elfeky","e.elfeky@fci-cu.edu.eg","Decision Support",""],["Dr.","Ayman Ahmed Sabry Abd El-Rahman","a.ghoneim@fci-cu.edu.eg","Decision Support",""],["Dr.","Elshimaa Ahmed Ramadan Elgendi","e.elgendi@fci-cu.edu.eg","Decision Support",""],["Dr.","Doaa Saleh Ali Abd El-Dayem","d.saleh@fci-cu.edu.eg","Decision Support",""],["Dr.","Ghada Mohamed Abd El-Aty Soliman","gh.tolan@fci-cu.edu.eg","Decision Support",""]];
@@ -201,7 +294,176 @@ function draw(){
  document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{cur=b.dataset.t;draw()});
 }
 draw();
-const secs=["doctors","tas","courses","drive","admins"];
+// ===== NEW: Announcements (id must be unique and never reused; newest = latest date) =====
+// To post a new announcement, add an entry here. People who open the site will see a red badge until they read it.
+const announcements=[
+ {"id": "a2", "date": "2026-10-16", "title": "ميعاد ميد الترم الأول: السبت 14 نوفمبر", "body": "امتحانات الميد في الترم الأول يوم السبت 14 نوفمبر 2026، مش 21 نوفمبر زي ما مكتوب في أجندة العام الدراسي المطبوعة."},
+ {"id": "a3", "date": "2026-10-16", "title": "أجندة العام الدراسي 2026/2027", "body": "الترم الأول\n- بداية الدراسة: السبت 19 سبتمبر 2026\n- إجازة 6 أكتوبر: الثلاثاء 6 أكتوبر (اتنقلت للخميس 8 أكتوبر 2026)\n- امتحانات الميد: السبت 14 نوفمبر 2026 (معدّل، الأجندة المطبوعة مكتوب فيها 21 نوفمبر)\n- نهاية المحاضرات: الخميس 17 ديسمبر 2026\n- إعلان أعمال السنة: الأحد 27 ديسمبر 2026\n- نهاية الترم الأول: الخميس 31 ديسمبر 2026\n- الامتحانات النهائية: من السبت 2 يناير لحد الخميس 21 يناير 2027 (3 أسابيع)\n- إجازة عيد الميلاد: الخميس 7 يناير 2027\n- إجازة نصف العام: من السبت 23 يناير لحد الخميس 4 فبراير 2027\n\nالترم الثاني\n- بداية الدراسة: السبت 6 فبراير 2027\n- عيد الفطر: من الأربعاء 10 لحد السبت 13 مارس 2027\n- امتحانات الميد: من السبت 3 أبريل 2027\n- عيد تحرير سيناء: الأحد 25 أبريل 2027\n- شم النسيم: الإثنين 26 أبريل 2027\n- نهاية المحاضرات: الخميس 13 مايو 2027\n- وقفة عرفات وعيد الأضحى: من السبت 15 لحد الخميس 20 مايو 2027\n- إعلان أعمال السنة: الثلاثاء 18 مايو 2027\n- الامتحانات النهائية: من السبت 22 مايو لحد الخميس 17 يونيو 2027\n- رأس السنة الهجرية: الأحد 6 يونيو (اتنقلت للخميس 10 يونيو 2027)\n- ثورة 30 يونيو: الأربعاء 30 يونيو (اتنقلت للخميس 1 يوليو 2027)\n\nالفصل الصيفي\n- بداية الدراسة: السبت 10 يوليو 2027\n- ثورة 23 يوليو: الجمعة 23 يوليو 2027\n- امتحانات الميد: السبت 7 أغسطس 2027\n- المولد النبوي: الأحد 15 أغسطس (اتنقل للخميس 20 أغسطس 2027)\n- الامتحانات النهائية: من الإثنين 23 لحد الأربعاء 25 أغسطس 2027\n\nالمصدر: شئون العمداء، أجندة العام الدراسي 2026/2027 (الإصدار 1.0، 6 سبتمبر 2026)."},
+ {"id": "a1", "date": "2026-10-15", "title": "أهلاً بيكم في موقع الدفعة", "body": "الإعلانات هتظهر هنا. الرقم الأحمر على الجرس معناه إن فيه حاجة جديدة.", "sample": true}
+];
+// ===== NEW: Mobile push (OneSignal). Paste your App ID here. Until then, only in-page notifications work. =====
+const ONESIGNAL_APP_ID="PUT-YOUR-ONESIGNAL-APP-ID-HERE";
+const pushOn=!ONESIGNAL_APP_ID.startsWith("PUT");
+if(pushOn){
+ window.OneSignalDeferred=window.OneSignalDeferred||[];
+ const sc=document.createElement('script');sc.src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";sc.defer=true;document.head.appendChild(sc);
+ OneSignalDeferred.push(async OS=>{await OS.init({appId:ONESIGNAL_APP_ID})});
+}
+(function(){
+ const bell=document.getElementById('bell'),bn=document.getElementById('bn'),ov=document.getElementById('ov'),list=document.getElementById('annlist'),nb=document.getElementById('notifbox');
+ const get=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}};
+ const put=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+ const sorted=()=>[...announcements].sort((a,b)=>b.date.localeCompare(a.date));
+ const unseen=()=>{const seen=get('annSeen');return announcements.filter(a=>!seen.includes(a.id))};
+ function badge(){const n=unseen().length;bn.textContent=n>9?'9+':n;bn.classList.toggle('on',n>0);bell.setAttribute('aria-label',n?`Announcements, ${n} new`:'Announcements')}
+ function notifUI(){
+  if(!('Notification' in window)){nb.innerHTML=pushOn?'<span class="note">On iPhone: tap Share, then Add to Home Screen, and open the site from the new icon to turn on notifications.</span>':'';return}
+  if(Notification.permission==='default')nb.innerHTML='<button class="pbtn" id="en" type="button">Turn on notifications</button>';
+  else if(Notification.permission==='granted')nb.innerHTML='<span class="note">Notifications are on for this browser.</span>';
+  else nb.innerHTML='<span class="note">Notifications are blocked. Allow them in your browser settings for this site.</span>';
+  const en=document.getElementById('en');
+  if(en)en.onclick=()=>{
+   if(pushOn)OneSignalDeferred.push(OS=>OS.Notifications.requestPermission().then(notifUI).catch(()=>{}));
+   else Notification.requestPermission().then(notifUI).catch(()=>{});
+  };
+ }
+ function open(){
+  const seen=get('annSeen'),l=sorted();
+  list.innerHTML=l.length?l.map(a=>`<div class="card${seen.includes(a.id)?'':' new'}">${seen.includes(a.id)?'':'<span class="ntag">New</span>'}${a.sample?'<span class="ntag sample">Sample</span>':''}<h3 dir="auto">${E(a.title)}</h3><div class="sub" dir="auto" style="white-space:pre-line">${E(a.body)}<br><span class="note">${E(a.date)}</span></div></div>`).join(''):'<p class="empty">No announcements yet.</p>';
+  notifUI();ov.classList.add('on');
+  put('annSeen',announcements.map(a=>a.id));badge();
+ }
+ const close=()=>ov.classList.remove('on');
+ bell.addEventListener('click',open);
+ document.getElementById('pc').addEventListener('click',close);
+ ov.addEventListener('click',e=>{if(e.target===ov)close()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+ badge();
+ // Browser notification for items this person has not been notified about yet (works while the site is open, if they allowed it)
+ try{
+  if(!pushOn&&'Notification' in window&&Notification.permission==='granted'){
+   const done=get('annNotified'),fresh=unseen().filter(a=>!done.includes(a.id));
+   fresh.forEach(a=>new Notification('FCAI-CU: '+a.title,{body:a.body}));
+   if(fresh.length)put('annNotified',[...done,...fresh.map(a=>a.id)]);
+  }
+ }catch(e){}
+})();
+
+// ===== NEW: Dark / light toggle (remembers the choice) =====
+(function(){
+ const root=document.documentElement,btn=document.getElementById('tt');
+ const isDark=()=>root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+ function setTheme(t,save){root.dataset.theme=t;btn.textContent=t==='dark'?'\u2600\uFE0F':'\uD83C\uDF19';btn.setAttribute('aria-label',t==='dark'?'Switch to light mode':'Switch to dark mode');if(save){try{localStorage.setItem('theme',t)}catch(e){}}}
+ let saved=null;try{saved=localStorage.getItem('theme')}catch(e){}
+ setTheme(saved==='dark'||saved==='light'?saved:(isDark()?'dark':'light'),false);
+ btn.addEventListener('click',()=>setTheme(isDark()?'light':'dark',true));
+})();
+
+// ===== Personal study space (each student's data stays in their own browser) =====
+const knownCourses=["Object Oriented Programming","Mathematics-3","Probability & Statistics-2","Computer Network Technology","Intro to Operations Research & Decision Support","Logic Design","Intro to Software Engineering","Entrepreneurship"];
+// ===== Grade scale for the GPA calculator: [letter, points]. Edit here if your faculty uses different values =====
+const gradeScale=[["A+",4],["A",3.7],["A-",3.4],["B+",3.2],["B",3],["B-",2.8],["C+",2.6],["C",2.4],["C-",2.2],["D+",2],["D",1.5],["D-",1],["F",0]];
+
+const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const uid=()=>Math.random().toString(36).slice(2,9);
+const $=id=>document.getElementById(id);
+let myCourses=ld('myCourses',[]).map(c=>({id:c.id||uid(),name:c.name||'',n:c.n||12,d:c.d!==undefined?c.d:(Array.isArray(c.done)?c.done.length:0)}));
+const saveCourses=()=>sv('myCourses',myCourses);
+
+$('kc').innerHTML=knownCourses.map(c=>`<option value="${E(c)}">`).join('');
+const pct=r=>Math.round(Math.min(r.d,r.n)/r.n*100);
+function renderTrack(){
+ $('xbody').innerHTML=myCourses.length?myCourses.map((r,i)=>`<tr data-id="${E(r.id)}"><td>${i+1}</td><td><input class="xc" list="kc" value="${E(r.name)}" placeholder="Pick or type a course" maxlength="60" autocomplete="off" aria-label="Course name"></td><td><input class="xn" type="number" min="1" max="40" value="${r.n}" aria-label="Number of lectures"></td><td><input class="xd" type="number" min="0" max="${r.n}" value="${r.d}" aria-label="Lectures finished"></td><td class="xp"><div class="bar"><i style="width:${pct(r)}%"></i></div><span class="note">${pct(r)}%</span></td><td><button class="btn xdel" type="button" aria-label="Remove row">\u2715</button></td></tr>`).join('')
+  :'<tr><td colspan="6" class="empty" style="padding:1.2rem;text-align:center;color:var(--muted)">No courses yet. Tap Add row.</td></tr>';
+}
+$('xbody').addEventListener('input',e=>{
+ const tr=e.target.closest('tr[data-id]');if(!tr)return;
+ const r=myCourses.find(x=>x.id===tr.dataset.id);if(!r)return;
+ if(e.target.classList.contains('xc'))r.name=e.target.value;
+ else if(e.target.classList.contains('xn')){r.n=Math.max(1,Math.min(40,parseInt(e.target.value)||1));tr.querySelector('.xd').max=r.n;if(r.d>r.n){r.d=r.n;tr.querySelector('.xd').value=r.d}}
+ else if(e.target.classList.contains('xd'))r.d=Math.max(0,Math.min(r.n,parseInt(e.target.value)||0));
+ tr.querySelector('.bar i').style.width=pct(r)+'%';tr.querySelector('.note').textContent=pct(r)+'%';
+ saveCourses();
+});
+$('xbody').addEventListener('click',e=>{
+ const b=e.target.closest('.xdel');if(!b)return;
+ const r=myCourses.find(x=>x.id===b.closest('tr').dataset.id);
+ if(r&&confirm('Remove this row'+(r.name?' ("'+r.name+'")':'')+'?')){myCourses=myCourses.filter(x=>x!==r);saveCourses();renderTrack()}
+});
+$('xadd').addEventListener('click',()=>{
+ myCourses.push({id:uid(),name:'',n:12,d:0});saveCourses();renderTrack();
+ const rows=$('xbody').querySelectorAll('.xc');rows[rows.length-1].focus();
+});
+
+// ----- GPA calculator (own page) -----
+// ===== Courses from the Term 1, 2026/2027 timetable, by level. Edit names here. Credit hours default to defH and each student can change them =====
+const defH=3;
+const gpaGroups=[
+ ["First Level",["Creative Thinking & Communication Skills","Technical Report Writing","Fundamentals of Computer Sciences","Math_0","Mathematics-1","Discrete Mathematics","Electronics","Structured Programming","Probability and Statistics-1","Mathematics-2","Selected Topics in Humanities","Fundamental of Economics","Critical Thinking","Ethics and Professionalism"]],
+ ["Second Level",["Entrepreneurship","Probability and Statistics-2","Object Oriented Programming","Mathematics-3","Introduction to Operations Research and Decision Support","Computer Network Technology","Logic Design","Introduction to Software Engineering","Data Structures","Web Technology","Introduction to Database Systems","Fundamentals of Management","Social Issues"]],
+ ["Third Level - Computer Science (CS)",["Algorithms Analysis and Design","Information Theory and Data Compression","Advanced Software Engineering","Computer Organization and Architecture","Advanced Data Structures","Operating Systems","High Performance Computing","Concepts of Programming Languages","Advanced Operating Systems","Computer Graphics","Artificial Intelligence"]],
+ ["Third Level - Information Technology (IT)",["Data Communication","Information Theory and Data Compression","Operating Systems","Computer Architecture","Algorithms Analysis and Design","Pattern Recognition","Signals and Systems","Advanced Computer Networks","Micro Controllers","Computer Graphics","Digital Signal Processing"]],
+ ["Third Level - Information Systems (IS)",["Analysis and Design of Information Systems","File Management and Processing","Database Management Systems","Algorithms Analysis and Design","Advanced Software Engineering","Operating Systems","Data Warehousing","Business Process Management","Artificial Intelligence","Web-based Information Systems Development","Information Retrieval"]],
+ ["Third Level - Operations Research & Decision Support (OR&DS)",["Learning From Data","Linear and Integer Programming","System Modeling and Simulation","Algorithms Analysis and Design","Decision Support and Future Studies Methodologies","Operating Systems","Artificial Intelligence","Dynamic Programming and Stochastic Modeling","Non Linear Programming","Production and Operations Management","Computational Intelligence"]],
+ ["Third Level - Artificial Intelligence (AI)",["Introduction to Logic","Theoretical Foundations of Machine Learning","Computer Organization and Architecture","Algorithms Analysis and Design","Operating Systems","Signals and Systems","Computational Cognitive Science","Autonomous Multiagent Systems","Supervised Learning","Reasoning and Knowledge Representation","Theories of Mind"]],
+ ["Fourth Level - Computer Science (CS)",["Machine Learning","Soft Computing","Compilers","Selected Topics in Computer Science-1","Cloud Computing","Software Testing and Quality Assurance","Theory of Computation","Natural Language Processing"]],
+ ["Fourth Level - Information Technology (IT)",["Robotics","Image Processing","Wireless and Mobile Networks","Communication Technology","Information and Computer Network Security","Machine Vision","Cyber Security","Cloud Computing Networks","Multimedia Mining","Selected Topics in Information Technology-1","Advanced Image Processing"]],
+ ["Fourth Level - Information Systems (IS)",["Machine Learning","Information Systems Development Methodologies","Selected Topics in Database","Service-Oriented Architecture","Geographical Information Systems","E-Business","Managing and Modeling Big Data","Selected Topics 2: Data Engineering","Data Mining","Selected Topics in Information Systems-1"]],
+ ["Fourth Level - Operations Research & Decision Support (OR&DS)",["Project Management","Data Analytics","Forecasting and Predictive Analytics","Multi-objective Programming","Network Modeling and Optimization","Strategic Decision Making","System Dynamics Modeling","Game Theory","Decision Theory","Managerial Economics and Financial Analysis"]],
+ ["Fourth Level - Artificial Intelligence (AI)",["Generative Adversarial Networks","Intelligent Autonomous Robotics","Unsupervised Learning","Selected Topics in Artificial Intelligence-1","Brain-Computer Interfacing","Processing of Formal and Natural Languages","Image Processing","Reinforcement Learning","Selected Topics in Artificial Intelligence-2"]]
+];
+const gpaAll=[...new Set(gpaGroups.flatMap(g=>g[1]))].sort();
+let g2=ld('myGpa2',{s:{},pg:'',ph:'',lv:1});
+if(!g2.s||typeof g2.s!=='object')g2.s={};
+if(!(g2.lv>=0&&g2.lv<gpaGroups.length))g2.lv=1;
+const saveG=()=>sv('myGpa2',g2);
+const pts=g=>{const x=gradeScale.find(s=>s[0]===g);return x?x[1]:null};
+const gst=n=>g2.s[n]||(g2.s[n]={on:false,h:null,g:''});
+const normH=h=>h===0?0:(h===1||h===2?2:3);
+const hrs=s=>s.h!==null&&s.h!==undefined?normH(s.h):defH;
+function calcGpa(){
+ let h=0,p=0,n=0,e=0;
+ Object.keys(g2.s).forEach(k=>{const s=g2.s[k];if(!s||!s.on)return;const v=pts(s.g),hr=hrs(s);if(v!==null&&hr>0){h+=hr;p+=hr*v;n++;if(s.g!=='F')e+=hr}});
+ $('gterm').textContent=h?(p/h).toFixed(2):'-';
+ $('gearn').textContent=h?e:'-';
+ $('ghrs').textContent=h?`Out of ${h} registered hours`+(h>e?` (${h-e} failed)`:''):'Tick a course and pick its grade.';
+ const pg=parseFloat(g2.pg),ph=parseFloat(g2.ph);
+ $('gcum').textContent=(h&&pg>=0&&ph>0)?((pg*ph+p)/(ph+h)).toFixed(2):'-';
+}
+function renderGpa(){
+ $('glevel').innerHTML=gpaGroups.map((g,i)=>`<option value="${i}"${i===g2.lv?' selected':''}>${E(g[0])}</option>`).join('');
+ const q=$('gq').value.trim().toLowerCase();
+ const list=q?gpaAll.filter(n=>n.toLowerCase().includes(q)):gpaGroups[g2.lv][1];
+ $('glevel').disabled=!!q;
+ const opts=g=>`<option value=""${g?'':' selected'}>-</option>`+gradeScale.map(s=>`<option value="${E(s[0])}"${s[0]===g?' selected':''}>${E(s[0])} (${s[1]})</option>`).join('');
+ $('gbody').innerHTML=list.length?list.map(n=>{const s=g2.s[n]||{on:false,h:null,g:''};
+  return `<tr data-n="${E(n)}"><td style="width:2.6rem;text-align:center"><input class="gk" type="checkbox"${s.on?' checked':''} style="width:1.1rem;height:1.1rem" aria-label="Include ${E(n)}"></td><td style="padding:.3rem .6rem">${E(n)}</td><td><select class="gh" aria-label="Credit hours for ${E(n)}" style="width:100%;font:inherit;border:0;background:transparent;color:var(--text);padding:.55rem .6rem">${[0,2,3].map(x=>`<option value="${x}"${x===hrs(s)?' selected':''}>${x}</option>`).join('')}</select></td><td><select class="gg" aria-label="Grade for ${E(n)}" style="width:100%;font:inherit;border:0;background:transparent;color:var(--text);padding:.55rem .6rem">${opts(s.g)}</select></td></tr>`}).join('')
+  :'<tr><td colspan="4" style="padding:1.2rem;text-align:center;color:var(--muted)">No course matches your search.</td></tr>';
+ $('gpg').value=g2.pg;$('gph').value=g2.ph;
+ calcGpa();
+}
+$('gbody').addEventListener('change',e=>{
+ const tr=e.target.closest('tr[data-n]');if(!tr)return;
+ const s=gst(tr.dataset.n);
+ if(e.target.classList.contains('gk'))s.on=e.target.checked;
+ else if(e.target.classList.contains('gh'))s.h=Math.max(0,Math.min(12,parseFloat(e.target.value)||0));
+ else if(e.target.classList.contains('gg')){s.g=e.target.value;if(s.g&&!s.on){s.on=true;tr.querySelector('.gk').checked=true}}
+ saveG();calcGpa();
+});
+$('gbody').addEventListener('input',e=>{
+ if(!e.target.classList.contains('gh'))return;
+ const tr=e.target.closest('tr[data-n]');if(!tr)return;
+ gst(tr.dataset.n).h=Math.max(0,Math.min(12,parseFloat(e.target.value)||0));saveG();calcGpa();
+});
+$('glevel').addEventListener('change',e=>{g2.lv=+e.target.value;saveG();renderGpa()});
+$('gq').addEventListener('input',renderGpa);
+$('gclr').addEventListener('click',()=>{if(!confirm('Clear all ticks and grades for every level?'))return;g2.s={};saveG();renderGpa()});
+$('gpg').addEventListener('input',e=>{g2.pg=e.target.value;saveG();calcGpa()});
+$('gph').addEventListener('input',e=>{g2.ph=e.target.value;saveG();calcGpa()});
+renderTrack();renderGpa();
+
+const secs=["doctors","tas","courses","study","gpa","drive","admins"];
 function show(id){if(!secs.includes(id))id="doctors";secs.forEach(x=>{document.getElementById(x).classList.toggle('on',x===id);document.querySelector('nav a[href="#'+x+'"]').classList.toggle('on',x===id)});}
 document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const id=a.getAttribute('href').slice(1);show(id);document.querySelector('main').scrollIntoView({behavior:'smooth'})}));
 show(location.hash.slice(1));
